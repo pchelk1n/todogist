@@ -38,14 +38,26 @@ class TodoGistTest extends TestCase
     /**
      * @test
      */
-    public function isCorrectCountWithTwoTasks()
+    public function isCorrectAddedTwoTasks()
     {
         $todoGist = new TodoGist('');
-        $task = new Task('');
+        $task1 = new Task('1');
+        $task2 = new Task('2');
 
-        $todoGist->addTask($task);
-        $todoGist->addTask($task);
+        $todoGist->addTask($task1);
+        $todoGist->addTask($task2);
 
+        $tasks = $todoGist->tasks();
+
+        $this->assertCount(2, $tasks);
         $this->assertEquals(2, $todoGist->countTasks());
+
+        foreach ($tasks as $task) {
+            $this->assertInstanceOf(Task::class, $task);
+            $this->assertFalse($task->isComplete());
+        }
+
+        $this->assertEquals('1', $tasks[0]->subject());
+        $this->assertEquals('2', $tasks[1]->subject());
     }
 }

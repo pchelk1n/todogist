@@ -16,7 +16,7 @@ final class TodoGist
     private $subject;
 
     /**
-     * @var Collection
+     * @var Collection|Task[]
      */
     private $tasks;
 
@@ -51,5 +51,13 @@ final class TodoGist
     public function addTask(Task $task): void
     {
         $this->tasks->add($task);
+    }
+
+    /**
+     * @return Task[]
+     */
+    public function tasks(): array
+    {
+        return $this->tasks->toArray();
     }
 }

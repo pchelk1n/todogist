@@ -32,7 +32,7 @@ class TaskTest extends TestCase
      */
     public function isNotCompletedFromConstructor()
     {
-        $this->assertEquals(false, (new Task(''))->isComplete());
+        $this->assertFalse((new Task(''))->isComplete());
     }
 
     /**
@@ -43,6 +43,6 @@ class TaskTest extends TestCase
         $task = new Task('');
         $task->complete();
 
-        $this->assertEquals(true, $task->isComplete());
+        $this->assertTrue($task->isComplete());
     }
 }
