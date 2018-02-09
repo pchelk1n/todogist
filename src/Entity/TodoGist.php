@@ -60,4 +60,14 @@ final class TodoGist
     {
         return $this->tasks->toArray();
     }
+
+    /**
+     * @param Task $task
+     *
+     * @return bool
+     */
+    public function removeTask(Task $task): bool
+    {
+        return $this->tasks->removeElement($task);
+    }
 }

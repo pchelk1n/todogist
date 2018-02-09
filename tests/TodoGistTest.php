@@ -60,4 +60,24 @@ class TodoGistTest extends TestCase
         $this->assertEquals('1', $tasks[0]->subject());
         $this->assertEquals('2', $tasks[1]->subject());
     }
+
+    /**
+     * @test
+     */
+    public function removeTask()
+    {
+        $todoGist = new TodoGist('');
+        $task1 = new Task('1');
+        $task2 = new Task('2');
+
+        $todoGist->addTask($task1);
+        $todoGist->addTask($task2);
+
+
+        $this->assertTrue($todoGist->removeTask($task2));
+        $this->assertEquals(1, $todoGist->countTasks());
+
+        $tasks = $todoGist->tasks();
+        $this->assertEquals('1', $tasks[0]->subject());
+    }
 }
