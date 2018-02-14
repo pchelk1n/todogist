@@ -14,7 +14,7 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function isCorrectInstanceOf()
+    public function isCorrectInstanceOf(): void
     {
         $this->assertInstanceOf(Task::class, new Task(''));
     }
@@ -22,7 +22,7 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function isSubjectCreatedFromConstructor()
+    public function isSubjectCreatedFromConstructor(): void
     {
         $this->assertEquals('test', (new Task('test'))->subject());
     }
@@ -30,7 +30,7 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function isNotCompletedFromConstructor()
+    public function isNotCompletedFromConstructor(): void
     {
         $this->assertFalse((new Task(''))->isComplete());
     }
@@ -38,7 +38,7 @@ class TaskTest extends TestCase
     /**
      * @test
      */
-    public function isComplete()
+    public function isComplete(): void
     {
         $task = new Task('');
         $task->complete();

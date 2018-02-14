@@ -4,14 +4,28 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class TodoGist
+ * @ORM\Table(name="todo_gists")
+ * @ORM\Entity(repositoryClass="App\Repository\TodoGistRepository")
  */
 final class TodoGist
 {
+
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $subject;
 
@@ -51,6 +65,8 @@ final class TodoGist
     public function addTask(Task $task): void
     {
         $this->tasks->add($task);
+
+        $task->setTodoGist($this);
     }
 
     /**
@@ -62,12 +78,10 @@ final class TodoGist
     }
 
     /**
-     * @param Task $task
-     *
-     * @return bool
+     * @return int
      */
-    public function removeTask(Task $task): bool
+    public function id(): int
     {
-        return $this->tasks->removeElement($task);
+        return $this->id;
     }
 }

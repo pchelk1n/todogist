@@ -14,7 +14,7 @@ class TodoGistTest extends TestCase
     /**
      * @test
      */
-    public function isCorrectInstanceOf()
+    public function isCorrectInstanceOf(): void
     {
         $this->assertInstanceOf(TodoGist::class, new TodoGist(''));
     }
@@ -22,7 +22,7 @@ class TodoGistTest extends TestCase
     /**
      * @test
      */
-    public function isSubjectCreatedFromConstructor()
+    public function isSubjectCreatedFromConstructor(): void
     {
         $this->assertEquals('test', (new TodoGist('test'))->subject());
     }
@@ -30,7 +30,7 @@ class TodoGistTest extends TestCase
     /**
      * @test
      */
-    public function isZeroTasks()
+    public function isZeroTasks(): void
     {
         $this->assertEquals(0, (new TodoGist(''))->countTasks());
     }
@@ -38,7 +38,7 @@ class TodoGistTest extends TestCase
     /**
      * @test
      */
-    public function isCorrectAddedTwoTasks()
+    public function isCorrectAddedTwoTasks(): void
     {
         $todoGist = new TodoGist('');
         $task1 = new Task('1');
@@ -51,6 +51,8 @@ class TodoGistTest extends TestCase
 
         $this->assertCount(2, $tasks);
         $this->assertEquals(2, $todoGist->countTasks());
+        $this->assertEquals($todoGist, $task1->todoGist());
+        $this->assertEquals($todoGist, $task2->todoGist());
 
         foreach ($tasks as $task) {
             $this->assertInstanceOf(Task::class, $task);
@@ -59,25 +61,5 @@ class TodoGistTest extends TestCase
 
         $this->assertEquals('1', $tasks[0]->subject());
         $this->assertEquals('2', $tasks[1]->subject());
-    }
-
-    /**
-     * @test
-     */
-    public function removeTask()
-    {
-        $todoGist = new TodoGist('');
-        $task1 = new Task('1');
-        $task2 = new Task('2');
-
-        $todoGist->addTask($task1);
-        $todoGist->addTask($task2);
-
-
-        $this->assertTrue($todoGist->removeTask($task2));
-        $this->assertEquals(1, $todoGist->countTasks());
-
-        $tasks = $todoGist->tasks();
-        $this->assertEquals('1', $tasks[0]->subject());
     }
 }
