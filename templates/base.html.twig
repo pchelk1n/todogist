@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        {% block stylesheets %}{% endblock %}
+
+        <title>{% block title %}Todogist{% endblock %}</title>
+    </head>
+    <body class="bg-light">
+        <div class="container">
+            <div class="py-5 text-center"><h2>Todogist</h2></div>
+
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+
+                    <h4 class="mb-3">Todo list 1</h4>
+
+                    <form class="needs-validation" novalidate>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="same-address">
+                            <label class="custom-control-label" for="same-address">Task 1</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="save-info">
+                            <label class="custom-control-label" for="save-info">Task 2</label>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
