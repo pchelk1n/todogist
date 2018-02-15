@@ -8,6 +8,5 @@ before_script:
 
 script:
   - ./bin/phpunit
-  - ./bin/console security:check
   - ./bin/console lint:twig ./templates
   - ./vendor/bin/phpstan analyse -c ./phpstan.neon --level max src
