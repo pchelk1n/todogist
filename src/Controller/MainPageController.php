@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\TodoGistRepository;
+use App\UseCase\TodoGist\TodoGistList;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,12 +14,12 @@ final class MainPageController extends Controller
 {
     /**
      * @Route("/")
-     * @param TodoGistRepository $repository
+     * @param TodoGistList $useCase
      * @return Response
      */
-    public function index(TodoGistRepository $repository): Response
+    public function index(TodoGistList $useCase): Response
     {
-        $todoGists = $repository->getTodoGistsWithTasks();
+        $todoGists = $useCase->execute();
 
         return $this->render('todoGists.html.twig', [
             'todoGists' => $todoGists,

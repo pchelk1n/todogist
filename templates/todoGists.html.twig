@@ -7,7 +7,7 @@
         <h4 class="mb-3">{{ todoGist.subject }}</h4>
 
         {% for task in todoGist.tasks %}
-
+            {# @var task \App\UseCase\TodoGist\TaskDTO #}
             {% set taskLabelId = 'task-' ~ task.id %}
 
             <div class="custom-control custom-checkbox">
