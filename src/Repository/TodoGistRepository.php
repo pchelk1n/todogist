@@ -3,13 +3,21 @@
 namespace App\Repository;
 
 use App\Entity\TodoGist;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * TodoGistRepository
  */
-class TodoGistRepository extends EntityRepository
+class TodoGistRepository extends ServiceEntityRepository
 {
+    /**
+     * @param ManagerRegistry $manager
+     */
+    public function __construct(ManagerRegistry $manager)
+    {
+        parent::__construct($manager, TodoGist::class);
+    }
 
     /**
      * @return TodoGist[]

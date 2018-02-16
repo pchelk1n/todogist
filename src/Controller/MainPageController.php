@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\TodoGist;
+use App\Repository\TodoGistRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,18 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class MainPageController extends Controller
 {
-
     /**
      * @Route("/")
-     *
+     * @param TodoGistRepository $repository
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      */
-    public function index(): Response
+    public function index(TodoGistRepository $repository): Response
     {
-        $todoGists = $this->getDoctrine()->getRepository(TodoGist::class)
-            ->getTodoGistsWithTasks();
+        $todoGists = $repository->getTodoGistsWithTasks();
 
         return $this->render('todoGists.html.twig', [
             'todoGists' => $todoGists,
