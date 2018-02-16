@@ -31,6 +31,8 @@ final class TodoGist
 
     /**
      * @var Collection|Task[]
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="todoGist")
      */
     private $tasks;
 

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for todoGist in todoGists %}
+
+        <h4 class="mb-3">{{ todoGist.subject }}</h4>
+
+        {% for task in todoGist.tasks %}
+
+            {% set taskLabelId = 'task-' ~ task.id %}
+
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="{{ taskLabelId }}">
+                <label class="custom-control-label" for="{{ taskLabelId }}">{{ task.subject }}</label>
+            </div>
+
+        {% endfor %}
+
+    {% endfor %}
+
+{% endblock %}
