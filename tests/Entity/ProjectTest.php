@@ -3,20 +3,20 @@
 namespace App\Tests\Entity;
 
 use App\Entity\Task;
-use App\Entity\TodoGist;
+use App\Entity\Project;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for TodoGist
  */
-class TodoGistTest extends TestCase
+class ProjectTest extends TestCase
 {
     /**
      * @test
      */
     public function isCorrectInstanceOf(): void
     {
-        $this->assertInstanceOf(TodoGist::class, new TodoGist(''));
+        $this->assertInstanceOf(Project::class, new Project(''));
     }
 
     /**
@@ -24,7 +24,7 @@ class TodoGistTest extends TestCase
      */
     public function isSubjectCreatedFromConstructor(): void
     {
-        $this->assertEquals('test', (new TodoGist('test'))->subject());
+        $this->assertEquals('test', (new Project('test'))->subject());
     }
 
     /**
@@ -32,7 +32,7 @@ class TodoGistTest extends TestCase
      */
     public function isZeroTasks(): void
     {
-        $this->assertEquals(0, (new TodoGist(''))->countTasks());
+        $this->assertEquals(0, (new Project(''))->countTasks());
     }
 
     /**
@@ -40,19 +40,19 @@ class TodoGistTest extends TestCase
      */
     public function isCorrectAddedTwoTasks(): void
     {
-        $todoGist = new TodoGist('');
+        $project = new Project('');
         $task1 = new Task('1');
         $task2 = new Task('2');
 
-        $todoGist->addTask($task1);
-        $todoGist->addTask($task2);
+        $project->addTask($task1);
+        $project->addTask($task2);
 
-        $tasks = $todoGist->tasks();
+        $tasks = $project->tasks();
 
         $this->assertCount(2, $tasks);
-        $this->assertEquals(2, $todoGist->countTasks());
-        $this->assertEquals($todoGist, $task1->todoGist());
-        $this->assertEquals($todoGist, $task2->todoGist());
+        $this->assertEquals(2, $project->countTasks());
+        $this->assertEquals($project, $task1->project());
+        $this->assertEquals($project, $task2->project());
 
         foreach ($tasks as $task) {
             $this->assertInstanceOf(Task::class, $task);

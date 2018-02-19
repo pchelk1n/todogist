@@ -21,12 +21,12 @@ final class Task
 
 
     /**
-     * @var TodoGist
+     * @var Project
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\TodoGist", inversedBy="tasks")
-     * @ORM\JoinColumn(name="todo_gist_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Project", inversedBy="tasks")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
-    private $todoGist;
+    private $project;
 
     /**
      * @var string
@@ -84,18 +84,18 @@ final class Task
     }
 
     /**
-     * @return TodoGist
+     * @return Project
      */
-    public function todoGist(): TodoGist
+    public function project(): Project
     {
-        return $this->todoGist;
+        return $this->project;
     }
 
     /**
-     * @param TodoGist $todoGist
+     * @param Project $project
      */
-    public function setTodoGist(TodoGist $todoGist): void
+    public function setProject(Project $project): void
     {
-        $this->todoGist = $todoGist;
+        $this->project = $project;
     }
 }

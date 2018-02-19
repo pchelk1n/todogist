@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\TodoGist;
+namespace App\UseCase\Project;
 
 /**
  * Class TaskDTO

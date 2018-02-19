@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\TodoGist;
+use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * TodoGistRepository
+ * ProjectRepository
  */
-class TodoGistRepository extends ServiceEntityRepository
+class ProjectRepository extends ServiceEntityRepository
 {
     /**
      * @param ManagerRegistry $manager
      */
     public function __construct(ManagerRegistry $manager)
     {
-        parent::__construct($manager, TodoGist::class);
+        parent::__construct($manager, Project::class);
     }
 
     /**
-     * @return TodoGist[]
+     * @return Project[]
      */
-    public function getTodoGistsWithTasks(): array
+    public function getProjectsWithTasks(): array
     {
-        return $this->createQueryBuilder('tg')
-            ->join('tg.tasks', 'tasks')
+        return $this->createQueryBuilder('project')
+            ->join('project.tasks', 'tasks')
             ->addSelect('tasks')
             ->getQuery()
             ->getResult();

@@ -2,11 +2,11 @@
 
 {% block body %}
 
-    {% for todoGist in todoGists %}
+    {% for project in projects %}
 
-        <h4 class="mb-3">{{ todoGist.subject }}</h4>
+        <h4 class="mb-3">{{ project.subject }}</h4>
 
-        {% for task in todoGist.tasks %}
+        {% for task in project.tasks %}
             {# @var task \App\UseCase\TodoGist\TaskDTO #}
             {% set taskLabelId = 'task-' ~ task.id %}
 

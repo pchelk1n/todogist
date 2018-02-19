@@ -1,11 +1,11 @@
 <?php
 
-namespace App\UseCase\TodoGist;
+namespace App\UseCase\Project;
 
 /**
- * Class TodoGistDTO
+ * Class ProjectDTO
  */
-final class TodoGistDTO
+final class ProjectDTO
 {
     public $subject;
 

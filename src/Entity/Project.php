@@ -7,12 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="todo_gists")
- * @ORM\Entity(repositoryClass="App\Repository\TodoGistRepository")
+ * @ORM\Table(name="project")
+ * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
  */
-final class TodoGist
+final class Project
 {
-
     /**
      * @var int
      *
@@ -32,7 +31,7 @@ final class TodoGist
     /**
      * @var Collection|Task[]
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="todoGist")
+     * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="project")
      */
     private $tasks;
 
@@ -68,7 +67,7 @@ final class TodoGist
     {
         $this->tasks->add($task);
 
-        $task->setTodoGist($this);
+        $task->setProject($this);
     }
 
     /**
