@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
  */
 class TaskTest extends TestCase
 {
-
     /**
      * @test
      */
@@ -44,5 +43,15 @@ class TaskTest extends TestCase
         $task->complete();
 
         $this->assertTrue($task->isComplete());
+    }
+
+    /**
+     * @test
+     */
+    public function isProjectIsNull(): void
+    {
+        $task = new Task('');
+
+        $this->assertNull($task->project());
     }
 }

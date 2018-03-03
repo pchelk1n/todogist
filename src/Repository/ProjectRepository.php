@@ -4,30 +4,20 @@ namespace App\Repository;
 
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * ProjectRepository
+ *
+ * @method Project[]   findAll()
  */
 class ProjectRepository extends ServiceEntityRepository
 {
     /**
-     * @param ManagerRegistry $manager
+     * @param RegistryInterface $registry
      */
-    public function __construct(ManagerRegistry $manager)
+    public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($manager, Project::class);
-    }
-
-    /**
-     * @return Project[]
-     */
-    public function getProjectsWithTasks(): array
-    {
-        return $this->createQueryBuilder('project')
-            ->join('project.tasks', 'tasks')
-            ->addSelect('tasks')
-            ->getQuery()
-            ->getResult();
+        parent::__construct($registry, Project::class);
     }
 }

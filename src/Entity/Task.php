@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tasks")
  * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
  */
-final class Task
+class Task
 {
     /**
      * @var int
@@ -24,7 +24,7 @@ final class Task
      * @var Project
      *
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tasks")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      */
     private $project;
 
@@ -86,7 +86,7 @@ final class Task
     /**
      * @return Project
      */
-    public function project(): Project
+    public function project(): ?Project
     {
         return $this->project;
     }

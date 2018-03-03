@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-sm-4">
+            list projects
+        </div>
+        <div class="col">
+            list Tasks
+            {% for task in tasks %}
+
+                {% set checkBoxId = task.id %}
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="{{ checkBoxId }}">
+                    <label class="form-check-label" for="{{ checkBoxId }}">
+                        {{ task.subject }}
+                    </label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\UseCase\Project\ProjectList;
+use App\UseCase\Tasks\GetTasks;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,16 +14,14 @@ final class MainPageController extends Controller
 {
     /**
      * @Route("/")
-     * @param ProjectList $useCase
+     * @param GetTasks $getTasks
      *
      * @return Response
      */
-    public function index(ProjectList $useCase): Response
+    public function show(GetTasks $getTasks): Response
     {
-        $projects = $useCase->execute();
-
-        return $this->render('projects.html.twig', [
-            'projects' => $projects,
+        return $this->render('main.html.twig', [
+            'tasks' => $getTasks(),
         ]);
     }
 }
