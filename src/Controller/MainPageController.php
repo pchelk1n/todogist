@@ -3,25 +3,40 @@
 namespace App\Controller;
 
 use App\UseCase\Tasks\GetTasks;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class MainPageController
  */
-final class MainPageController extends Controller
+class MainPageController
 {
+    /**
+     * @var EngineInterface
+     */
+    private $templating;
+
+    /**
+     * @param EngineInterface $templating
+     */
+    public function __construct(EngineInterface $templating)
+    {
+        $this->templating = $templating;
+    }
+
     /**
      * @Route("/")
      * @param GetTasks $getTasks
      *
      * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \RuntimeException
      */
     public function show(GetTasks $getTasks): Response
     {
-        return $this->render('main.html.twig', [
+        return new Response($this->templating->render('main.html.twig', [
             'tasks' => $getTasks(),
-        ]);
+        ]));
     }
 }
