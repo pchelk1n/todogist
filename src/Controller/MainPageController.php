@@ -26,7 +26,7 @@ class MainPageController
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="main")
      * @param GetTasks $getTasks
      *
      * @return Response
