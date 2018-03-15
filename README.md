@@ -12,7 +12,6 @@ https://symfony.com/doc/current/reference/requirements.html
 
 Installation
 ------------
-
 ```bash
 $ composer install
 $ bin/console doctrine:database:create
@@ -21,14 +20,12 @@ $ bin/console doctrine:migrations:migrate
 
 Usage
 -----
-
 ```bash
 $ bin/console server:run
 ```
 
 Tests
 -----
-
 ```bash
 $ ./vendor/bin/simple-phpunit
 ```
