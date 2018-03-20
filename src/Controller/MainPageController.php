@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\UseCase\Projects\GetProjects;
 use App\UseCase\Tasks\GetTasks;
 use Symfony\Component\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,16 +28,18 @@ class MainPageController
 
     /**
      * @Route("/", name="main")
-     * @param GetTasks $getTasks
+     * @param GetTasks    $getTasks
+     * @param GetProjects $getProjects
      *
      * @return Response
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
      */
-    public function show(GetTasks $getTasks): Response
+    public function show(GetTasks $getTasks, GetProjects $getProjects): Response
     {
         return new Response($this->templating->render('main.html.twig', [
             'tasks' => $getTasks(),
+            'projects' => $getProjects(),
         ]));
     }
 }
