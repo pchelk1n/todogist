@@ -92,9 +92,17 @@ class Task
     }
 
     /**
+     * @return string
+     */
+    public function projectSubject(): string
+    {
+        return $this->project ? $this->project->subject() : '';
+    }
+
+    /**
      * @param Project $project
      */
-    public function setProject(Project $project): void
+    public function addProject(Project $project): void
     {
         $this->project = $project;
     }

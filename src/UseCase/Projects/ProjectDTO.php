@@ -9,6 +9,7 @@ use App\Entity\Project;
  */
 class ProjectDTO
 {
+    public $id;
     public $subject;
     public $countTasks;
 
@@ -22,6 +23,7 @@ class ProjectDTO
         $data = new self();
         $data->subject = $project->subject();
         $data->countTasks = $project->countTasks();
+        $data->id = $project->id();
 
         return $data;
     }

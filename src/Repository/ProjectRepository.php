@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * ProjectRepository
  *
  * @method Project[]   findAll()
+ * @method Project     find($id)
  */
 class ProjectRepository extends ServiceEntityRepository
 {

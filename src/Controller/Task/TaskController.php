@@ -2,7 +2,6 @@
 
 namespace App\Controller\Task;
 
-use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -47,18 +46,21 @@ class TaskController
 
     /**
      * @Route("/add-task/", methods={"POST"}, name="add_task")
-     * @param Request $request
+     * @param Request    $request
+     * @param TaskFacade $facade
+     *
      * @return RedirectResponse
      * @throws \InvalidArgumentException
      */
-    public function addTask(Request $request): RedirectResponse
-    {
-        $dto = new TaskDTO();
-        $dto->subject = $request->get('subject');
+    public function addTask(
+        Request $request,
+        TaskFacade $facade
+    ): RedirectResponse {
+        $dto = TaskDTO::create($request->request->all());
         $errors = $this->validator->validate($dto);
 
         if (!\count($errors)) {
-            $task = new Task($dto->subject);
+            $task = $facade->create($dto);
 
             $this->em->persist($task);
             $this->em->flush();

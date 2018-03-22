@@ -53,5 +53,6 @@ class TaskTest extends TestCase
         $task = new Task('');
 
         $this->assertNull($task->project());
+        $this->assertEquals('', $task->projectSubject());
     }
 }

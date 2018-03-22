@@ -67,7 +67,7 @@ class Project
     {
         $this->tasks->add($task);
 
-        $task->setProject($this);
+        $task->addProject($this);
     }
 
     /**
@@ -81,7 +81,7 @@ class Project
     /**
      * @return int
      */
-    public function id(): int
+    public function id(): ?int
     {
         return $this->id;
     }

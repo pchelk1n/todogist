@@ -11,6 +11,7 @@ class TasksDTO
 {
     public $id;
     public $subject;
+    public $projectSubject;
     public $isComplete;
 
     /**
@@ -24,6 +25,7 @@ class TasksDTO
         $taskDTO->id = $task->id();
         $taskDTO->subject = $task->subject();
         $taskDTO->isComplete = $task->isComplete();
+        $taskDTO->projectSubject = $task->projectSubject();
 
         return $taskDTO;
     }

@@ -40,7 +40,7 @@ class ProjectTest extends TestCase
      */
     public function isCorrectAddedTwoTasks(): void
     {
-        $project = new Project('');
+        $project = new Project('project subject');
         $task1 = new Task('1');
         $task2 = new Task('2');
 
@@ -53,6 +53,8 @@ class ProjectTest extends TestCase
         $this->assertEquals(2, $project->countTasks());
         $this->assertEquals($project, $task1->project());
         $this->assertEquals($project, $task2->project());
+        $this->assertEquals('project subject', $task1->projectSubject());
+        $this->assertEquals('project subject', $task2->projectSubject());
 
         foreach ($tasks as $task) {
             $this->assertInstanceOf(Task::class, $task);

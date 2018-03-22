@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Controller\Task;
 
 use App\Controller\Task\TaskController;
+use App\Controller\Task\TaskFacade;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,6 +35,7 @@ class TaskControllerTest extends TestCase
      */
     public function isFlushNotExecWithInvalidData(): void
     {
+        $facade = $this->createMock(TaskFacade::class);
         $em = $this->createMock(EntityManagerInterface::class);
         $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
         $urlGenerator->method('generate')->willReturn('link');
@@ -42,7 +44,7 @@ class TaskControllerTest extends TestCase
 
         $controller = new TaskController($this->validator, $em, $urlGenerator);
 
-        $response = $controller->addTask(new Request([]));
+        $response = $controller->addTask(new Request([]), $facade);
         $this->assertEquals('link', $response->getTargetUrl());
     }
 
@@ -51,13 +53,15 @@ class TaskControllerTest extends TestCase
      */
     public function isFlushExecWithValidData(): void
     {
+        $facade = $this->createMock(TaskFacade::class);
         $em = $this->createMock(EntityManagerInterface::class);
         $urlGenerator = $this->createMock(UrlGeneratorInterface::class);
         $urlGenerator->method('generate')->willReturn('link');
 
         $em->expects($this->once())->method('flush');
+        $facade->expects($this->once())->method('create');
 
         $controller = new TaskController($this->validator, $em, $urlGenerator);
-        $controller->addTask(new Request(['subject' => 'title']));
+        $controller->addTask(new Request([], ['subject' => 'title']), $facade);
     }
 }
