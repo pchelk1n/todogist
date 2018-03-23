@@ -31,3 +31,6 @@ framework:
 
     templating:
         engines: twig
+
+    translator:
+        enabled: false

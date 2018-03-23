@@ -43,12 +43,20 @@ class Task
     private $complete;
 
     /**
+     * @var \DateTimeImmutable
+     *
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
+
+    /**
      * @param string $subject
      */
     public function __construct(string $subject)
     {
         $this->subject = $subject;
         $this->complete = false;
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     /**
@@ -105,5 +113,13 @@ class Task
     public function addProject(Project $project): void
     {
         $this->project = $project;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function createdAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 }

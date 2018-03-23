@@ -13,6 +13,7 @@ class TasksDTO
     public $subject;
     public $projectSubject;
     public $isComplete;
+    public $createdAt;
 
     /**
      * @param Task $task
@@ -26,6 +27,7 @@ class TasksDTO
         $taskDTO->subject = $task->subject();
         $taskDTO->isComplete = $task->isComplete();
         $taskDTO->projectSubject = $task->projectSubject();
+        $taskDTO->createdAt = $task->createdAt();
 
         return $taskDTO;
     }
