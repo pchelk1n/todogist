@@ -24,7 +24,7 @@ class Task
      * @var Project
      *
      * @ORM\ManyToOne(targetEntity="Project", inversedBy="tasks")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+     * @ORM\JoinColumn(onDelete="SET NULL", nullable=true)
      */
     private $project;
 

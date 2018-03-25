@@ -2,6 +2,7 @@
 
 namespace App\Controller\Task;
 
+use App\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -65,6 +66,21 @@ class TaskController
             $this->em->persist($task);
             $this->em->flush();
         }
+
+        return new RedirectResponse($this->urlGenerator->generate('main'));
+    }
+
+    /**
+     * @Route("/remove-task/{id}", name="remove_task")
+     * @param Task $task
+     *
+     * @return RedirectResponse
+     * @throws \InvalidArgumentException
+     */
+    public function removeTask(Task $task): RedirectResponse
+    {
+        $this->em->remove($task);
+        $this->em->flush();
 
         return new RedirectResponse($this->urlGenerator->generate('main'));
     }

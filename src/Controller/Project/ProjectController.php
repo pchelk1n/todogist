@@ -66,4 +66,19 @@ class ProjectController
 
         return new RedirectResponse($this->urlGenerator->generate('main'));
     }
+
+    /**
+     * @Route("/remove-project/{id}", name="remove_project")
+     * @param Project $project
+     *
+     * @return RedirectResponse
+     * @throws \InvalidArgumentException
+     */
+    public function removeProject(Project $project): RedirectResponse
+    {
+        $this->em->remove($project);
+        $this->em->flush();
+
+        return new RedirectResponse($this->urlGenerator->generate('main'));
+    }
 }
